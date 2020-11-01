@@ -1,3 +1,3 @@
 # Lazy person Lazy writeups
 
-[CyberyoddhaCTF](https://finay.github.io/Writeups/Cyberyoddha/)
+[Cyberyoddha CTF](https://finay.github.io/Writeups/Cyberyoddha/)
