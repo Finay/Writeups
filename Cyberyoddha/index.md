@@ -162,7 +162,20 @@
 
 #### Lorem Ipsum (125 pts)
 
-  1. Use the LoremSolve.py that compares the given text to the real Lorem ipsum
+  1. Use the [LoremSolve.py](https://finay.github.io/Writeups/Cyberyoddha/Solve-Scripts/Lorem.py) that compares the given text to the real Lorem ipsum
+  ```python
+    
+given = 'Lorem ipsum dolorc sit amet, consectetury adipiscing celit, sed dot eiusmod tempor incifdidunt ut labore et dolore magna aliqual. Ut enim ad minima veniam, quist nostrud exercitation ullamcoi laboris nisin ut aliquip ex eai commodos consequat. Duis caute irure dolor in reprehenderit in voluptate velit oesse cillum dolore eu fugiat nulla pariatur. Excepteur osint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim lid est laborum.'
+real = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+
+offset = 0
+
+for i in range(len(given)):
+    #print(given[i], real[i-offset])
+    if given[i] != real[i-offset]:
+        print(given[i], end="")
+        offset += 1
+  ```
   2. Returns cyctflatiniscool, add curly brackets
 
   FLAG: cyctf{latiniscool}
@@ -190,7 +203,8 @@
 
 #### Flag delivery (225 pts)
 
-  1. Replace characters with .  and - since it is morse code, use some decoder online to get FLAG
+  1. Replace characters with .  and - since it is morse code, use some decoder online to get FLAG  
+  [file](https://finay.github.io/Writeups/Cyberyoddha/morse.txt)
 
   FLAG: CYCTFR3@D_B3TW33N_TH3_L1N3S
 
@@ -204,19 +218,64 @@
 
 #### Password 1 (125 pts)
 
-  1. Run p1_solve.py
+  1. Run [p1_solve.py](https://finay.github.io/Writeups/Cyberyoddha/Solve-Scripts/p1_solve.py)
+  ```python
+  with open("/root/Documents/CTFs/CyberYoddha/password1.py") as red:
+    lines = red.readlines()[5:48]
+
+final = range(len(lines))
+
+for line in lines:
+    p1 = int(line.split("[")[1].split("]")[0])
+    p2 = line.split("'")[1]
+    final[p1] = p2
+
+print("".join(final))
+  ```
 
   FLAG: CYCTF{pu771ng_th3_ch@r@ct3r$_t0g3th3r_1337}
 
 #### Password 2 (175 pts)
 
-  1. Run p2_solve.py
+  1. Run [p2_solve.py](https://finay.github.io/Writeups/Cyberyoddha/Solve-Scripts/p2_solve.py)
+  ```python
+  given = "CYCTF{ju$@rcs_3l771l_@_t}bd3cfdr0y_u0t__03_0l3m"
+
+flag = ["A" for i in range(47)]
+
+for i in range(0, 9):
+    flag[i] = given[i]
+for i in range(9, 24):
+    flag[i] = given[32 - i]
+for i in range(24, 47, 2):
+    flag[i] = given[70 - i]
+for i in range(45, 25, -2):
+    flag[i] = given[i]
+
+print("".join(flag))
+  ```
 
   FLAG: CYCTF{ju$t_@_l177l3_scr@mAl3_f0r_y0u_t0_d3c0d3}
 
 #### Password 3 (225 pts)
 
-  1. Run p3_solve.py
+  1. Run [p3_solve.py](https://finay.github.io/Writeups/Cyberyoddha/Solve-Scripts/p3_solve.py)
+  ```python
+  import base64
+
+given = "FgwWARMuF2UhPQotZScKFTsxCjcVJmYKY2FqCiE9FSEmCjJlMTksKA=="
+
+given = given.encode("ascii")
+given = base64.b64decode(given)
+
+given = given.decode("ascii")
+flag = []
+
+for i in given:
+    flag += [chr(ord(i) ^ 0x55)]
+
+print("".join(flag))
+  ```
 
   FLAG: CYCTF{B0th_x0r_@nd_b@s3_64?_th@ts_g0dly}
 
